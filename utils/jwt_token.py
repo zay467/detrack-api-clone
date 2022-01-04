@@ -1,8 +1,8 @@
 from typing import Optional
 from datetime import timedelta,datetime
+from exceptions.http import INVALID_CREDENTIAL
 from config.config import settings
 from jose import JWTError, jwt
-from fastapi import HTTPException,status
 from schema.token import TokenData
 
 class JWT:
@@ -30,18 +30,13 @@ class JWT:
         return encoded_jwt
 
     def verify_token(token:str):
-        credentials_exception = HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
             username: str = payload.get("sub")
             role: str = payload.get("role")
             token_type : str = payload.get("token_type")
             if username is None or token_type is None or role is None:
-                raise credentials_exception
+                raise INVALID_CREDENTIAL
             return TokenData(username=username,token_type=token_type,role=role)
         except JWTError:
-            raise credentials_exception
+            raise INVALID_CREDENTIAL
