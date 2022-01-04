@@ -1,7 +1,6 @@
 from sqlalchemy import Column,String
 from infrastructure.base_mixin import BaseMixin
 from infrastructure.base_class import Base
-from sqlalchemy.orm import relationship
 
 class Vehicle(BaseMixin,Base):
     detrack_id = Column(String, nullable=False)

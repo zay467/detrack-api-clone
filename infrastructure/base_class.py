@@ -1,9 +1,11 @@
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
-from sqlalchemy import Column,Integer
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column
+import uuid
 
 @as_declarative()
 class Base:
-    id=Column(Integer, index=True, autoincrement=True, primary_key=True)
+    id= Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
     __name__: str
 
