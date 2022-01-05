@@ -10,3 +10,8 @@ INVALID_CREDENTIAL = HTTPException(
     detail="Could not validate credentials",
     headers={"WWW-Authenticate": "Bearer"},
 )
+
+BAD_REQUEST = lambda message: HTTPException(
+    status_code=status.HTTP_400_BAD_REQUEST,
+    detail=message
+)
