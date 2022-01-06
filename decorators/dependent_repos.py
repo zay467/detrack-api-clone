@@ -10,6 +10,7 @@ def DependentRepos(dependencies:dict={}):
         def wrapped_service(db:Session=Depends(get_db),user:User=Depends(get_current_user)):
             modf_service = service()
             for key,repo in dependencies.items():
+                # very magic (looking got optimal solution)
                 if key == "detrack_id_repo":
                     setattr(modf_service,key,repo(db))
                 else:
