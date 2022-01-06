@@ -2,7 +2,6 @@ from infrastructure.models.user import User
 from fastapi.param_functions import Depends
 from sqlalchemy.orm import Session
 from infrastructure.session import get_db
-from core.entity.user import User as UserDTO
 
 class UserRepository:
     def __init__(self,db:Session=Depends(get_db)):
@@ -15,6 +14,6 @@ class UserRepository:
         self._db.refresh(new_user)
         return new_user
         
-    def readByUsername(self,username: str) -> UserDTO:
+    def readByUsername(self,username: str) -> User:
         user = self._db.query(User).filter(User.username == username).first()
         return user
