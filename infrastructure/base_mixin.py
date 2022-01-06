@@ -1,5 +1,6 @@
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy import Column,Integer
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship,declarative_mixin
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import DateTime
@@ -13,16 +14,20 @@ class BaseMixin:
     updated_time = Column(DateTime(timezone=True), onupdate=func.now())
     @declared_attr
     def created_user_id(cls):
-        return Column(Integer, ForeignKey('user.id'), default=0)
+        return Column(UUID(as_uuid=True), ForeignKey('user.id'), default=0)
     @declared_attr
     def updated_user_id(cls):
-        return Column(Integer, ForeignKey('user.id'), default=0)
+        return Column(UUID(as_uuid=True), ForeignKey('user.id'), default=0)
     @declared_attr
     def created_user(cls):
         return relationship('User', primaryjoin=lambda: User.id==cls.created_user_id)
     @declared_attr
     def updated_user(cls):
         return relationship('User', primaryjoin=lambda: User.id==cls.updated_user_id)
+
+    def create_stamp(self, user:User):
+        self.created_user_id = user.id
+        self.updated_user_id = user.id
 
     def update_stamp(self, user:User):
         self.updated_user_id = user.id

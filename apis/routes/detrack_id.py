@@ -6,6 +6,6 @@ from core.services.detrack_id import DetrackIdService
 router = APIRouter(prefix="/detrackId",tags=["Detrack ID"])
 
 @router.get("/generate",status_code=status.HTTP_200_OK,response_model=DetrackId)
-def create(repo=Depends(DetrackIdRepository)):
+def generate_id(repo=Depends(DetrackIdRepository)):
     return DetrackIdService(repo).createDetrackId()
 

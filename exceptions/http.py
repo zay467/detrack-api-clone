@@ -1,13 +1,13 @@
 from fastapi import HTTPException,status
 
-NOT_FOUND = HTTPException(
+NOT_FOUND = lambda message='Resource not found.': HTTPException(
     status_code=status.HTTP_404_NOT_FOUND,
-    detail= 'Resoucse not found'
+    detail= message
 )
 
 INVALID_CREDENTIAL = HTTPException(
     status_code=status.HTTP_401_UNAUTHORIZED,
-    detail="Could not validate credentials",
+    detail="Could not validate credentials.",
     headers={"WWW-Authenticate": "Bearer"},
 )
 
