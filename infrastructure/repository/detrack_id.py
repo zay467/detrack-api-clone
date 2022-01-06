@@ -6,7 +6,7 @@ from core.entity.detrack_id import DetrackId as DetrackIdDTO
 from exceptions.http import NOT_FOUND
 
 class DetrackIdRepository:
-    def __init__(self,db:Session=Depends(get_db),*args):
+    def __init__(self,db:Session=Depends(get_db)):
         self._db = db
 
     def persist(self,detrack_id):

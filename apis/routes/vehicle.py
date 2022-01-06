@@ -23,6 +23,6 @@ async def update(id:uuid.UUID,request:Vehicle,service:VehicleService=Depends(Veh
     return {"detail":"Vehicle update successful."}
 
 @router.delete('/{id}',status_code=status.HTTP_200_OK,response_model=Message)
-async def delete(id:int,service:VehicleService=Depends(VehicleService)):
+async def delete(id:uuid.UUID,service:VehicleService=Depends(VehicleService)):
     service.deleteVehicle(id)
     return {"detail":"Vehicle delete successful."}
