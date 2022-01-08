@@ -1,12 +1,9 @@
 from typing import List
 from core.entity.job import Job
-from infrastructure.repository.detrack_id import DetrackIdRepository
 from infrastructure.repository.job import JobRepositiory
 from decorators.dependent_repos import DependentRepos
-import json
 
 dependent_repos = {
-    'detrack_id_repo': DetrackIdRepository,
     'job_repo': JobRepositiory
 }
 
@@ -16,7 +13,6 @@ class JobService:
         return self.job_repo.list()
     
     def addJob(self,job) -> Job:
-        self.detrack_id_repo.readByDetrackId(job.detrack_id)
         new_job = self.job_repo.persist(job)
         return new_job
     

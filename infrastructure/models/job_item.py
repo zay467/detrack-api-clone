@@ -27,7 +27,7 @@ class JobItem(BaseMixin,Base):
     reject_quantity=Column(Integer)
     reject_reason=Column(String)
     weight=Column(Float)
-    serial_numbers=Column(ARRAY(String))
+    serial_numbers=Column(JSON)
     job_id=Column(uuid.UUID,ForeignKey("job.id"))
     job=relationship("Job",back_populates="items")
 
