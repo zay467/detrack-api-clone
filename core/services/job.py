@@ -1,10 +1,13 @@
 from typing import List
 from core.entity.job import Job
 from infrastructure.repository.job import JobRepositiory
+from infrastructure.repository.job_item import JobItemRepositiory
 from decorators.dependent_repos import DependentRepos
 
 dependent_repos = {
-    'job_repo': JobRepositiory
+    'job_repo': JobRepositiory,
+    'job_item_repo':JobItemRepositiory
+
 }
 
 @DependentRepos(dependencies=dependent_repos)

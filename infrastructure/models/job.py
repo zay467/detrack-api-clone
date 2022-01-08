@@ -1,6 +1,5 @@
-from sqlalchemy import Column,String,JSON,Integer
+from sqlalchemy import Column,String,JSON,Integer,Date, Float, Time
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql.sqltypes import ARRAY, DATE, Date, Float, Time
 from infrastructure.base_mixin import BaseMixin
 from infrastructure.base_class import Base
 
@@ -10,7 +9,7 @@ class Job(BaseMixin,Base):
     open_to_marketplace=Column(String)
     marketplace_offer=Column(String)
     do_number=Column(String,nullable=False)
-    date=Column(DATE,nullable=False)
+    date=Column(Date,nullable=False)
     start_date=Column(Date)
     status=Column(String)
     job_release_time=Column(Time)

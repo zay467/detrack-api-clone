@@ -1,9 +1,8 @@
-from sqlalchemy import Column,String,JSON,Integer
+from sqlalchemy import Column,String,JSON,Integer,Boolean, Date, Float
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql.sqltypes import ARRAY, DATE, Boolean, Date, Float, Time
 from infrastructure.base_mixin import BaseMixin
 from infrastructure.base_class import Base
-import uuid
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql.schema import ForeignKey
 
 class JobItem(BaseMixin,Base):
@@ -11,7 +10,7 @@ class JobItem(BaseMixin,Base):
     description=Column(String)
     purchase_order_number=Column(String)
     batch_number=Column(String)
-    expiry_date=Column(String)
+    expiry_date=Column(Date)
     comments=Column(String)
     quantity=Column(Integer)
     unit_of_measure=Column(String)
@@ -28,7 +27,7 @@ class JobItem(BaseMixin,Base):
     reject_reason=Column(String)
     weight=Column(Float)
     serial_numbers=Column(JSON)
-    job_id=Column(uuid.UUID,ForeignKey("job.id"))
+    job_id=Column(UUID(as_uuid=True),ForeignKey("job.id"))
     job=relationship("Job",back_populates="items")
 
 
