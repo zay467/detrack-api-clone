@@ -1,10 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel
-from datetime import datetime
-import uuid
-
-from sqlalchemy.orm import relationship
-
+from pydantic import BaseModel,Json
 
 class JobItem(BaseModel):
     sku :Optional[str]
@@ -28,6 +23,3 @@ class JobItem(BaseModel):
     reject_reason:Optional[str]
     weight:Optional[float]
     serial_numbers=Optional[List[str]]
-    class Config():
-        orm_mode = True
-    
