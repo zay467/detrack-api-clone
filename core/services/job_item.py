@@ -8,7 +8,7 @@ dependent_repos = {
 }
 
 @DependentRepos(dependencies=dependent_repos)
-class JobService:
+class JobItemService:
     def getAllJobItem(self) -> List[JobItem]:
         return self.job_item_repo.list()
     
@@ -17,7 +17,6 @@ class JobService:
         return new_job_item
     
     def updateJobItem(self,id:int,job_item) -> JobItem:
-        self.detrack_id_repo.readByDetrackId(job_item.detrack_id)
         return self.job_item_repo.update(id,job_item)
     
     def deleteJobItem(self,id:int) -> None:

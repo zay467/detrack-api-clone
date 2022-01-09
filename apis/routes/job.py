@@ -17,12 +17,12 @@ async def create(request:Job,service:JobService=Depends(JobService)):
     service.addJob(request)
     return {"detail":"Job create successful."}
 
-@router.put('/{id}',status_code=status.HTTP_200_OK,response_model=Message)
-async def update(id:uuid.UUID,request:Job,service:JobService=Depends(JobService)):
-    service.updateJob(id,request)
-    return {"detail":"Job update successful."}
+# @router.put('/{id}',status_code=status.HTTP_200_OK,response_model=Message)
+# async def update(id:uuid.UUID,request:Job,service:JobService=Depends(JobService)):
+#     service.updateJob(id,request)
+#     return {"detail":"Job update successful."}
 
-@router.delete('/{id}',status_code=status.HTTP_200_OK,response_model=Message)
-async def delete(id:uuid.UUID,service:JobService=Depends(JobService)):
-    service.deleteJob(id)
-    return {"detail":"Job delete successful."}
+# @router.delete('/{id}',status_code=status.HTTP_200_OK,response_model=Message)
+# async def delete(id:uuid.UUID,service:JobService=Depends(JobService)):
+#     service.deleteJob(id)
+#     return {"detail":"Job delete successful."}

@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel,Json
+from pydantic import BaseModel
 
 class JobItem(BaseModel):
     sku :Optional[str]
@@ -22,4 +22,4 @@ class JobItem(BaseModel):
     reject_quantity:Optional[int]
     reject_reason:Optional[str]
     weight:Optional[float]
-    serial_numbers=Optional[List[str]]
+    serial_numbers:Optional[List[str]]

@@ -27,7 +27,7 @@ class JobItem(BaseModel):
     reject_quantity:Optional[int]
     reject_reason:Optional[str]
     weight:Optional[float]
-    serial_numbers=Optional[List[str]]
+    serial_numbers:Optional[List[str]]
     class Config():
         orm_mode = True
     

@@ -17,10 +17,12 @@ class JobService:
     
     def addJob(self,job) -> Job:
         new_job = self.job_repo.persist(job)
+        for item in job.items:
+            item.job_id=new_job.id
+            self.job_item_repo.persist(item)
         return new_job
     
     def updateJob(self,id:int,job) -> Job:
-        self.detrack_id_repo.readByDetrackId(job.detrack_id)
         return self.job_repo.update(id,job)
     
     def deleteJob(self,id:int) -> None:

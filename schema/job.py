@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import datetime, date,time
 from typing import List, Optional
-from pydantic import BaseModel,Json
+from pydantic import BaseModel,Json,validator
 from .job_item import JobItem
 
 class Job(BaseModel):
@@ -9,13 +9,13 @@ class Job(BaseModel):
     open_to_marketplace:Optional[str]
     marketplace_offer:Optional[str]
     do_number:str
-    date:datetime
-    start_date:Optional[datetime]
+    date:date
+    start_date:Optional[date]
     status:Optional[str]
-    job_release_time:Optional[datetime]
-    job_time:Optional[datetime]
+    job_release_time:Optional[date]
+    job_time:Optional[date]
     time_window:Optional[str]
-    job_received_date:datetime
+    job_received_date:date
     tracking_number:Optional[str]
     order_number:Optional[str]
     job_type:Optional[str]
@@ -71,7 +71,7 @@ class Job(BaseModel):
     attachment_url:Optional[str]
     carrier:Optional[str]
     auto_reschedule:Optional[str]
-    eta_time:Optional[datetime]
+    eta_time:Optional[date]
     depot:Optional[str]
     depot_contact:Optional[str]
     department:Optional[str]
@@ -104,6 +104,81 @@ class Job(BaseModel):
     door:Optional[str]
     time_zone:Optional[str]
     vehicle_type:Optional[str]
-    items:Optional[list[JobItem]]
-    
-    pod_time:Optional[datetime]
+    items:Optional[List[JobItem]]=[]
+    pod_time:Optional[date]
+    id:Optional[str]
+    job_age:Optional[str]
+    detrack_number:Optional[str]
+    tracking_status:Optional[str]
+    shipper_name:Optional[str]
+    reason:Optional[str]
+    last_reason:Optional[str]
+    received_by_sent_by:Optional[str]
+    note:Optional[str]
+    live_eta:Optional[str]
+    pod_lat:Optional[str]
+    pod_lng:Optional[str]
+    pod_address:Optional[str]
+    info_received_at:Optional[datetime]
+    head_to_pick_up_at:Optional[datetime]
+    pick_up_at:Optional[datetime]
+    scheduled_at:Optional[datetime]
+    at_warehouse_at:Optional[datetime]
+    out_for_delivery_at:Optional[datetime]
+    head_to_delivery_at:Optional[datetime]
+    cancelled_at:Optional[datetime]
+    pick_up_failed_count:Optional[datetime]
+    deliver_failed_count:Optional[datetime]
+    pick_up_assign_to:Optional[datetime]
+    pick_up_reason:Optional[datetime]
+    pod_at:Optional[datetime]
+    texted_at:Optional[datetime]
+    called_at:Optional[datetime]
+    address_tracked_at:Optional[datetime]
+    arrived_lat:Optional[float]
+    arrived_lng:Optional[float]
+    arrived_address:Optional[str]
+    arrived_at:Optional[datetime]
+    serial_number:Optional[str]
+    signed_at:Optional[datetime]
+    photo_1_at:Optional[datetime]
+    photo_2_at:Optional[datetime]
+    photo_3_at:Optional[datetime]
+    photo_4_at:Optional[datetime]
+    photo_5_at:Optional[datetime]
+    photo_6_at:Optional[datetime]
+    photo_7_at:Optional[datetime]
+    photo_8_at:Optional[datetime]
+    photo_9_at:Optional[datetime]
+    photo_10_at:Optional[datetime]
+    signature_file_url:Optional[str]
+    photo_1_file_url:Optional[str]
+    photo_2_file_url:Optional[str]
+    photo_3_file_url:Optional[str]
+    photo_4_file_url:Optional[str]
+    photo_5_file_url:Optional[str]
+    photo_6_file_url:Optional[str]
+    photo_7_file_url:Optional[str]
+    photo_8_file_url:Optional[str]
+    photo_9_file_url:Optional[str]
+    photo_10_file_url:Optional[str]
+    actual_weight:Optional[int]
+    temperature:Optional[int]
+    hold_time:Optional[int]
+    payment_collected:Optional[float]
+    actual_crates:Optional[int]
+    actual_pallets:Optional[int]
+    actual_utilization:Optional[int]
+    attempt:Optional[int]
+    goods_service_rating:Optional[int]
+    driver_rating:Optional[int]
+    customer_feedback:Optional[str]
+    items_count:Optional[int]
+    tracking_link:Optional[str]
+    @validator("pod_time", pre=True)
+    def parse_pod_time(cls, value):
+        return datetime.strptime(
+            value,
+            "%H-%M"
+        ).date()
+  
