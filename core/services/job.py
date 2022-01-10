@@ -7,7 +7,6 @@ from decorators.dependent_repos import DependentRepos
 dependent_repos = {
     'job_repo': JobRepositiory,
     'job_item_repo':JobItemRepositiory
-
 }
 
 @DependentRepos(dependencies=dependent_repos)

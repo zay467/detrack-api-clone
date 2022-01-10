@@ -1,5 +1,4 @@
 from typing import List
-import json
 from infrastructure.base_repo import BaseRepo
 from infrastructure.models.job_item import JobItem
 from core.entity.job_item import JobItem as JobItemDTO
@@ -17,10 +16,6 @@ class JobItemRepositiory(BaseRepo):
         
     def list(self) -> List[JobItemDTO]:
         job_items = self.readAll(JobItem)
-        # vehicle_dto_list = []
-        # for vehicle in vehicles:
-        #     vehicle.groups = json.loads(vehicle.groups)
-        #     vehicle_dto_list.append(VehicleDTO.from_orm(vehicle))
         return [JobItemDTO.from_orm(JobItem) for job_item in job_items]
     
     def delete(self,job_item) -> None:
