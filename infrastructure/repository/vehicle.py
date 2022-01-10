@@ -17,15 +17,11 @@ class VehicleRepositiory(BaseRepo):
         
     def list(self) -> List[VehicleDTO]:
         vehicles = self.readAll(Vehicle)
-        # vehicle_dto_list = []
-        # for vehicle in vehicles:
-        #     vehicle.groups = json.loads(vehicle.groups)
-        #     vehicle_dto_list.append(VehicleDTO.from_orm(vehicle))
         return [VehicleDTO.from_orm(vehicle) for vehicle in vehicles]
     
-    def delete(self,vehicle) -> None:
-        vehicle_orm = self.read(Vehicle,vehicle.id)
-        super().delete(vehicle_orm)
+    def delete(self,id) -> None:
+        self.read(Vehicle,id)
+        super().delete(Vehicle,id)
         
     def getById(self,id) -> VehicleDTO:
         vehicle_orm = self.read(Vehicle,id)

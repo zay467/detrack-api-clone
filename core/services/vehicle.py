@@ -20,10 +20,9 @@ class VehicleService:
         new_vehicle = self.vehicle_repo.persist(vehicle)
         return new_vehicle
     
-    def updateVehicle(self,id:int,vehicle) -> Vehicle:
+    def updateVehicle(self,id,vehicle) -> Vehicle:
         self.detrack_id_repo.readByDetrackId(vehicle.detrack_id)
         return self.vehicle_repo.update(id,vehicle)
     
-    def deleteVehicle(self,id:int) -> None:
-        vehicle = self.vehicle_repo.getById(id)
-        self.vehicle_repo.delete(vehicle)
+    def deleteVehicle(self,id) -> None:
+        self.vehicle_repo.delete(id)

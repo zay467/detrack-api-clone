@@ -46,9 +46,10 @@ class BaseRepo:
         except SQLAlchemyError as e:
             raise SQLALCHEMY_ERROR(e)
 
-    def delete(self,model) -> None:
+    def delete(self,model,id) -> None:
         try:
-            self._db.delete(model)
+            data = self._db.query(model).filter(model.id == id)
+            data.delete(synchronize_session=False)
             self._db.flush()
         except SQLAlchemyError as e:
             raise SQLALCHEMY_ERROR(e)

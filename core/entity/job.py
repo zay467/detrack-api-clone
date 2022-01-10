@@ -1,182 +1,35 @@
 from typing import List, Optional
 from pydantic import BaseModel
-from datetime import datetime
-import uuid
+from datetime import datetime,date
 from .job_item import JobItem
-
-from sqlalchemy.orm import relationship
+from infrastructure.models.job import job_type_enum
+import uuid
 
 class Job(BaseModel):
-    detrack_type :Optional[str]
-    primary_job_status:Optional[str]
-    open_to_marketplace:Optional[str]
-    marketplace_offer:Optional[str]
-    do_number:str
-    date:datetime
-    start_date:Optional[datetime]
-    status:Optional[str]
-    job_release_time:Optional[datetime]
-    job_time:Optional[datetime]
-    time_window:Optional[str]
-    job_received_date:datetime
-    tracking_number:Optional[str]
-    order_number:Optional[str]
-    job_type:Optional[str]
-    job_sequence:Optional[str]
-    job_fee:Optional[str]
-    address_lat:Optional[str]
-    address_lng:Optional[str]
-    address:Optional[str]
-    company_name:Optional[str]
-    address_1:Optional[str]
-    address_2:Optional[str]
-    address_3:Optional[str]
-    postal_code:Optional[str]
-    city:Optional[str]
-    state:Optional[str]
-    country:Optional[str]
-    billing_address:Optional[str]
-    deliver_to_collect_from:Optional[str]
-    last_name:Optional[str]
-    phone_number:Optional[str]
-    sender_phone_number:Optional[str]
-    fax_number:Optional[str]
-    instructions:Optional[str]
-    assign_to:Optional[str]
-    notify_email:Optional[str]
-    webhook_url:Optional[str]
-    zone:Optional[str]
-    customer:Optional[str]
-    account_number:Optional[str]
-    job_owner:Optional[str]
-    invoice_number:Optional[str]
-    payment_mode:Optional[str]
-    payment_amount:Optional[str]
-    group_id:Optional[str]
-    group_name:Optional[str]
-    vendor_name:Optional[str]
-    source:Optional[str]
-    weight:Optional[int]
-    parcel_width:Optional[int]
-    parcel_length:Optional[int]
-    parcel_height:Optional[int]
-    cubic_meter:Optional[float]
-    boxes:Optional[int]
-    cartons:Optional[int]
-    pieces:Optional[int]
-    envelopes:Optional[int]
-    pallets:Optional[int]
-    bins:Optional[int]
-    trays:Optional[int]
-    bundles:Optional[int]
-    rolls:Optional[int]
-    number_of_shipping_labels:Optional[int]
-    attachment_url:Optional[str]
-    carrier:Optional[str]
-    auto_reschedule:Optional[str]
-    eta_time:Optional[datetime]
-    depot:Optional[str]
-    depot_contact:Optional[str]
-    department:Optional[str]
-    sales_person:Optional[str]
-    identification_number:Optional[str]
-    bank_prefix:Optional[str]
-    run_number:Optional[str]
-    pick_up_from:Optional[str]
-    pick_up_time:Optional[str]
-    pick_up_lat:Optional[str]
-    pick_up_lng:Optional[str]
-    pick_up_address:Optional[str]
-    pick_up_address_1:Optional[str]
-    pick_up_address_2:Optional[str]
-    pick_up_address_3:Optional[str]
-    pick_up_city:Optional[str]
-    pick_up_state:Optional[str]
-    pick_up_country:Optional[str]
-    pick_up_postal_code:Optional[str]
-    pick_up_zone:Optional[str]
-    job_price:Optional[float]
-    insurance_price:Optional[float]
-    insurance_coverage:Optional[str]
-    total_price:Optional[float]
-    payer_type:Optional[str]
-    remarks:Optional[str]
-    service_type:Optional[str]
-    warehouse_address:Optional[str]
-    destination_time_window:Optional[str]
-    door:Optional[str]
-    time_zone:Optional[str]
-    vehicle_type:Optional[str]
-    items:Optional[list[JobItem]]
-    pod_time:Optional[datetime]
-    id:Optional[str]
-    job_age:Optional[str]
-    detrack_number:Optional[str]
-    tracking_status:Optional[str]
-    shipper_name:Optional[str]
-    reason:Optional[str]
-    last_reason:Optional[str]
-    received_by_sent_by:Optional[str]
-    note:Optional[str]
-    live_eta:Optional[str]
-    pod_lat:Optional[str]
-    pod_lng:Optional[str]
-    pod_address:Optional[str]
-    info_received_at:Optional[datetime]
-    head_to_pick_up_at:Optional[datetime]
-    pick_up_at:Optional[datetime]
-    scheduled_at:Optional[datetime]
-    at_warehouse_at:Optional[datetime]
-    out_for_delivery_at:Optional[datetime]
-    head_to_delivery_at:Optional[datetime]
-    cancelled_at:Optional[datetime]
-    pick_up_failed_count:Optional[datetime]
-    deliver_failed_count:Optional[datetime]
-    pick_up_assign_to:Optional[datetime]
-    pick_up_reason:Optional[datetime]
-    pod_at:Optional[datetime]
-    texted_at:Optional[datetime]
-    called_at:Optional[datetime]
-    address_tracked_at:Optional[datetime]
-    arrived_lat:Optional[float]
-    arrived_lng:Optional[float]
-    arrived_address:Optional[str]
-    arrived_at:Optional[datetime]
-    serial_number:Optional[str]
-    signed_at:Optional[datetime]
-    photo_1_at:Optional[datetime]
-    photo_2_at:Optional[datetime]
-    photo_3_at:Optional[datetime]
-    photo_4_at:Optional[datetime]
-    photo_5_at:Optional[datetime]
-    photo_6_at:Optional[datetime]
-    photo_7_at:Optional[datetime]
-    photo_8_at:Optional[datetime]
-    photo_9_at:Optional[datetime]
-    photo_10_at:Optional[datetime]
-    signature_file_url:Optional[str]
-    photo_1_file_url:Optional[str]
-    photo_2_file_url:Optional[str]
-    photo_3_file_url:Optional[str]
-    photo_4_file_url:Optional[str]
-    photo_5_file_url:Optional[str]
-    photo_6_file_url:Optional[str]
-    photo_7_file_url:Optional[str]
-    photo_8_file_url:Optional[str]
-    photo_9_file_url:Optional[str]
-    photo_10_file_url:Optional[str]
-    actual_weight:Optional[int]
-    temperature:Optional[int]
-    hold_time:Optional[int]
-    payment_collected:Optional[float]
-    actual_crates:Optional[int]
-    actual_pallets:Optional[int]
-    actual_utilization:Optional[int]
-    attempt:Optional[int]
-    goods_service_rating:Optional[int]
-    driver_rating:Optional[int]
-    customer_feedback:Optional[str]
-    items_count:Optional[int]
-    tracking_link:Optional[str]
+    id : uuid.UUID
+    date : date
+    type : job_type_enum
+    address : str
+    deliver_to_collect_from : str
+    phone : str
+    email : str
+    assign_to : str
+    instructions : str
+    received_by_sent_by : str
+    do : str
+    status : str
+    time : str
+    pod_lat : float
+    pod_lng : float
+    job_price : str
+    total_price : str
+    priority : str
+    address_lat : float
+    address_lng : float
+    items : Optional[List[JobItem]] = []
+    created_time: Optional[datetime] = None
+    updated_time: Optional[datetime] = None
+    created_user_id: Optional[int] = None
+    updated_user_id: Optional[int] = None
     class Config():
         orm_mode = True

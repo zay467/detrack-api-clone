@@ -1,4 +1,3 @@
-from typing import Collection
 from sqlalchemy import Column,String,Date, Float,Enum
 from sqlalchemy.orm import relationship
 from infrastructure.base_mixin import BaseMixin
@@ -10,16 +9,16 @@ class job_type_enum(str,enum.Enum):
     collection = "Collection" 
 
 class Job(BaseMixin,Base):
-    date = Column(Date)
-    type = Column(Enum(job_type_enum))
-    address = Column(String)
+    date = Column(Date,nullable=False)
+    type = Column(Enum(job_type_enum),nullable=False)
+    address = Column(String,nullable=False)
     deliver_to_collect_from = Column(String)
     phone = Column(String)
     email = Column(String)
     assign_to = Column(String)
     instructions = Column(String)
     received_by_sent_by = Column(String)
-    do = Column(String)
+    do = Column(String,nullable=False)
     status = Column(String)
     time = Column(String)
     pod_lat = Column(Float)
