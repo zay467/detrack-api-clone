@@ -10,8 +10,10 @@ dependent_repos = {
 
 @DependentRepos(dependencies=dependent_repos)
 class JobService:
-    def getAllJob(self) -> List[Job]:
-        return self.job_repo.list()
+    def getAllJob(self,type,date) -> List[Job]:
+        if date is None : 
+            return self.job_repo.listByType(type)
+        return self.job_repo.listByTypeAndDate(type,date)
     
     def createJob(self,job) -> Job:
         new_job = self.job_repo.persist(job)

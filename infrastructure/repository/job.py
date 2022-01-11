@@ -4,6 +4,8 @@ from infrastructure.models.job import Job
 from infrastructure.models.job_item import JobItem
 from core.entity.job import Job as JobDTO
 from core.entity.job_item import JobItem as JobItemDTO
+from exceptions.repo import SQLALCHEMY_ERROR
+from sqlalchemy.exc import SQLAlchemyError
 
 class JobRepositiory(BaseRepo):
     def persist(self,job) -> JobDTO:
@@ -20,6 +22,20 @@ class JobRepositiory(BaseRepo):
     def list(self) -> List[JobDTO]:
         jobs = self.readAll(Job)
         return [JobDTO.from_orm(job) for job in jobs]
+
+    def listByType(self,type) -> List[JobDTO]:
+        try:
+            jobs = self._db.query(Job).filter(Job.type == type).all()
+            return [JobDTO.from_orm(job) for job in jobs]
+        except SQLAlchemyError as e:
+            raise SQLALCHEMY_ERROR(e)
+
+    def listByTypeAndDate(self,type,date) -> List[JobDTO]:
+        try:
+            jobs = self._db.query(Job).filter(Job.type == type,Job.date == date).all()
+            return [JobDTO.from_orm(job) for job in jobs]
+        except SQLAlchemyError as e:
+            raise SQLALCHEMY_ERROR(e)
     
     def delete(self,id) -> None:
         self.read(Job,id)

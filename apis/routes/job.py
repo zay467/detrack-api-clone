@@ -1,17 +1,19 @@
-from typing import List
+from typing import List,Optional
 from fastapi import APIRouter, Depends, status
 from schema.job import Job
 from schema.job_item import JobItem
 from core.services.job import JobService
 from core.entity.job import Job as JobDTO
 from schema.message import Message
+from infrastructure.models.job import job_type_enum
+from datetime import date
 import uuid
 
 router = APIRouter(prefix="/job",tags=["Job"])
 
 @router.get('/',status_code=status.HTTP_200_OK,response_model=List[JobDTO])
-async def get_all(service:JobService=Depends(JobService)):
-    return service.getAllJob()
+async def get_all(type:job_type_enum,date: Optional[date] = None,service:JobService=Depends(JobService)):
+    return service.getAllJob(type,date)
 
 @router.get('/{id}',status_code=status.HTTP_200_OK,response_model=JobDTO)
 async def get(id:uuid.UUID,service:JobService=Depends(JobService)):
