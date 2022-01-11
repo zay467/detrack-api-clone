@@ -3,7 +3,6 @@ from core.entity.vehicle import Vehicle
 from infrastructure.repository.detrack_id import DetrackIdRepository
 from infrastructure.repository.vehicle import VehicleRepositiory
 from decorators.dependent_repos import DependentRepos
-import json
 
 dependent_repos = {
     'detrack_id_repo': DetrackIdRepository,

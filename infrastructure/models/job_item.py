@@ -12,7 +12,7 @@ class JobItem(BaseMixin,Base):
     quantity = Column(Integer,nullable=False)
     reject = Column(Integer)
     reason = Column(String)
-    job_id=Column(UUID(as_uuid=True),ForeignKey("job.id"))
+    job_id=Column(UUID(as_uuid=True),ForeignKey("job.id",ondelete='CASCADE'))
     job=relationship("Job",back_populates="items")
 
 

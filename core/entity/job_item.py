@@ -12,8 +12,8 @@ class JobItem(BaseModel):
     reason : str
     created_time: Optional[datetime] = None
     updated_time: Optional[datetime] = None
-    created_user_id: Optional[int] = None
-    updated_user_id: Optional[int] = None
+    created_user_id: Optional[uuid.UUID] = None
+    updated_user_id: Optional[uuid.UUID] = None
     class Config():
         orm_mode = True
     

@@ -1,5 +1,4 @@
 from typing import List
-import json
 from infrastructure.base_repo import BaseRepo
 from infrastructure.models.vehicle import Vehicle
 from core.entity.vehicle import Vehicle as VehicleDTO

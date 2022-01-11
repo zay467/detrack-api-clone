@@ -2,7 +2,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime,date
 from .job_item import JobItem
-from infrastructure.models.job import job_type_enum
+from infrastructure.models.job import job_type_enum,job_status_enum
 import uuid
 
 class Job(BaseModel):
@@ -17,19 +17,19 @@ class Job(BaseModel):
     instructions : str
     received_by_sent_by : str
     do : str
-    status : str
+    status : job_status_enum
     time : str
     pod_lat : float
     pod_lng : float
     job_price : str
     total_price : str
-    priority : str
+    priority : int
     address_lat : float
     address_lng : float
     items : Optional[List[JobItem]] = []
     created_time: Optional[datetime] = None
     updated_time: Optional[datetime] = None
-    created_user_id: Optional[int] = None
-    updated_user_id: Optional[int] = None
+    created_user_id: Optional[uuid.UUID] = None
+    updated_user_id: Optional[uuid.UUID] = None
     class Config():
         orm_mode = True

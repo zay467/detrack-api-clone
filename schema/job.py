@@ -19,8 +19,8 @@ class Job(BaseModel):
     pod_lng : Optional[float]
     job_price : Optional[str]
     total_price : Optional[str]
-    priority : Optional[str]
+    priority : Optional[int]
     address_lat : Optional[float]
     address_lng : Optional[float]
-    items : Optional[List[JobItem]] = []
+    items : Optional[List[JobItem]]
   
