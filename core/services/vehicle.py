@@ -1,11 +1,11 @@
 from typing import List
 from core.entity.vehicle import Vehicle 
-from infrastructure.repository.detrack_id import DetrackIdRepository
+from infrastructure.repository.courier import CourierRepository
 from infrastructure.repository.vehicle import VehicleRepositiory
 from decorators.dependent_repos import DependentRepos
 
 dependent_repos = {
-    'detrack_id_repo': DetrackIdRepository,
+    'courier_repo': CourierRepository,
     'vehicle_repo': VehicleRepositiory
 }
 
@@ -15,7 +15,7 @@ class VehicleService:
         return self.vehicle_repo.list()
     
     def addVehicle(self,vehicle) -> Vehicle:
-        self.detrack_id_repo.readByDetrackId(vehicle.detrack_id)
+        self.courier_repo.readByDetrackId(vehicle.detrack_id)
         new_vehicle = self.vehicle_repo.persist(vehicle)
         return new_vehicle
     
