@@ -1,4 +1,3 @@
-from decimal import Inexact
 from sqlalchemy import Column,String,Integer
 from sqlalchemy.orm import relationship
 from infrastructure.base_mixin import BaseMixin

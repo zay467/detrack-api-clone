@@ -24,6 +24,7 @@ class JobRepositiory(BaseRepo):
         return [JobDTO.from_orm(job) for job in jobs]
 
     def listByType(self,type) -> List[JobDTO]:
+        # print(self._user)
         try:
             jobs = self._db.query(Job).filter(Job.type == type).all()
             return [JobDTO.from_orm(job) for job in jobs]

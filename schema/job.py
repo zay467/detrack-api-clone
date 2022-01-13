@@ -3,6 +3,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 from .job_item import JobItem
 from infrastructure.models.job import job_type_enum
+import uuid
 
 class Job(BaseModel):
     date : date
@@ -11,7 +12,7 @@ class Job(BaseModel):
     deliver_to_collect_from : Optional[str]
     phone : Optional[str]
     email : Optional[str]
-    assign_to : Optional[str]
+    assign_to_id : Optional[uuid.UUID]
     instructions : Optional[str]
     received_by_sent_by : Optional[str]
     do : str

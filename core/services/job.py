@@ -1,6 +1,5 @@
 from typing import List
 from core.entity.job import Job
-from core.entity.job_item import JobItem
 from infrastructure.repository.job import JobRepositiory
 from decorators.dependent_repos import DependentRepos
 

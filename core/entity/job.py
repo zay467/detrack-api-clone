@@ -2,6 +2,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime,date
 from .job_item import JobItem
+from .vehicle import Vehicle
 from infrastructure.models.job import job_type_enum,job_status_enum
 import uuid
 
@@ -13,7 +14,7 @@ class Job(BaseModel):
     deliver_to_collect_from : str
     phone : str
     email : str
-    assign_to : str
+    assign_to : Optional[Vehicle] = None
     instructions : str
     received_by_sent_by : str
     do : str

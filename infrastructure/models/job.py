@@ -3,7 +3,9 @@ from sqlalchemy.orm import relationship
 from infrastructure.base_mixin import BaseMixin
 from infrastructure.base_class import Base
 from datetime import datetime 
+from sqlalchemy.dialects.postgresql import UUID
 import enum
+from sqlalchemy.sql.schema import ForeignKey
 
 class job_type_enum(str,enum.Enum):
     delivery = "Delivery"
@@ -21,7 +23,8 @@ class Job(BaseMixin,Base):
     deliver_to_collect_from = Column(String)
     phone = Column(String)
     email = Column(String)
-    assign_to = Column(String)
+    assign_to_id = Column(UUID(as_uuid=True),ForeignKey("vehicle.id"),nullable=True)
+    assign_to = relationship("Vehicle",back_populates="jobs")
     instructions = Column(String)
     received_by_sent_by = Column(String)
     do = Column(String,nullable=False)

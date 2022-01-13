@@ -1,6 +1,7 @@
 from sqlalchemy import Column,String,JSON,Integer
 from infrastructure.base_mixin import BaseMixin
 from infrastructure.base_class import Base
+from sqlalchemy.orm import relationship
 
 class Vehicle(BaseMixin,Base):
     detrack_id = Column(String, nullable=False)
@@ -11,3 +12,4 @@ class Vehicle(BaseMixin,Base):
     groups = Column(JSON)
     zones = Column(String)
     vehicle_types = Column(String)
+    jobs = relationship("Job", back_populates="assign_to")
