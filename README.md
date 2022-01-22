@@ -23,7 +23,7 @@ source <your-env-name>/bin/activate
 Finally git clone the repository.
 
 ```shell
-git clone https://github.com/thamardaw/HIDTCOPHospitalApi.git
+git clone https://github.com/zay467/detrack-api-clone.git
 ```
 
 Then go into the cloned folder and install requirements (we will be continue working on this directory). While installing setup the ".env" file.
