@@ -11,7 +11,7 @@ def DependentRepos(dependencies:dict={}):
             modf_service = service()
             for key,repo in dependencies.items():
                 # very magic (looking for optimal solution)
-                if key == "detrack_id_repo":
+                if key == "courier_repo":
                     setattr(modf_service,key,repo(db))
                 else:
                     setattr(modf_service,key,repo(db,user))
