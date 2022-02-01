@@ -17,6 +17,7 @@ async def get_all(type:job_type_enum,date: Optional[date] = None,service:JobServ
 
 @router.get('/{id}',status_code=status.HTTP_200_OK,response_model=JobDTO)
 async def get(id:uuid.UUID,service:JobService=Depends(JobService)):
+    # print(request.headers.get('Authorization'))
     return service.getJobByID(id)
 
 @router.post('/',status_code=status.HTTP_200_OK,response_model=Message)
